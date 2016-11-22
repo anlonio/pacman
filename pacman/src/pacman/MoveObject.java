@@ -9,7 +9,7 @@ package pacman;
  *
  * @author Antonio
  */
-public class MoveObject {
+public class MoveObject implements Runnable{
     private int posicaoX;
     private int posicaoY;
     
@@ -29,19 +29,24 @@ public class MoveObject {
     public void mover(int direcao){
         switch(direcao){
             case 0:
-                this.posicaoX++;
+                this.posicaoY--;
                 break;
             case 1:
-                this.posicaoY++;
+                this.posicaoX++;
                 break;
             case 2:
-                this.posicaoX--;
+                this.posicaoY++;
                 break;
             case 3:
-                this.posicaoY--;
+                this.posicaoX--;
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

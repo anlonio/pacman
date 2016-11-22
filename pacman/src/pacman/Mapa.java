@@ -14,6 +14,7 @@ import java.util.concurrent.atomic.AtomicReferenceArray;
  */
 public class Mapa {
     private AtomicReferenceArray<AtomicIntegerArray> labirinto;
+    private Pacman pacman;
     
     public Mapa(){
         AtomicIntegerArray[] x = new AtomicIntegerArray[20];
@@ -22,6 +23,8 @@ public class Mapa {
             x[i] = new AtomicIntegerArray(new int[20]);
         }
         this.labirinto = new AtomicReferenceArray<>(x);
+        this.pacman = new Pacman(0, 0);
+        this.push(0, 0, 1);
     }
 
     public void push(int x, int y, int value){
@@ -51,8 +54,9 @@ public class Mapa {
         return retorno;
     }
     
-    public void imprimir(){
+    public String imprimir(){
         String p;
+        String retorno = "";
         for(int i=0;i<this.labirinto.length();i++){
             for(int j=0;j<this.labirinto.get(i).length(); j++){
                 switch(this.labirinto.get(i).get(j)){
@@ -74,9 +78,10 @@ public class Mapa {
                     default:
                         p=" ";
                 }
-                System.out.print(p);
+                retorno += p;
             }
-            System.out.println("");
+            retorno += "\n";
         }
+        return retorno;
     }
 }
